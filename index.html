@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Bukittinggi Tourism</title>
+	<link rel="stylesheet" href="components/lungo/lungo.css">
+	<link rel="stylesheet" href="components/lungo/lungo.icon.css">
+	<link rel="stylesheet" href="components/lungo/lungo.theme.css">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <style>
+      #map-cl{
+        height: 90%;
+        width: 100%;
+        margin: 0px;
+        padding: 10px
+      }
+	  #map1, #map2, #map3{
+        height: 40%;
+        width: 100%;
+        margin: 0px;
+        padding: 10px
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=true"></script>
+	<script type="text/javascript" src="http://www.google.com/jsapi"></script>
+</head>
+<body>
+
+<section id="main" data-transition="slide">
+	<header data-title="Bukittinggi Tourism">
+		<!--Navigasi untuk menu sidebar di kiri-->
+		<nav class="left box">
+			<a href="#" data-view-aside="menu" data-icon="menu" class="drag"></a>
+		</nav>
+	</header>	
+	<article id="home" data-transition="slide">
+	<img src="images/jam.jpg">
+    <div class="empty">
+		<strong>Hai Bukittinggi!</strong>
+		<small>Ayo cari infrastruktur penunjang pariwisata disini!</small>
+	</div>
+	</article>
+	</section>
+    <script src="components/quojs/quo.js"></script>
+    <script src="components/lungo/lungo.js"></script>
+    <script>
+	Lungo.init({
+        resources: ['menu.html']
+    });
+    </script>
+    <script>
+	function map1(x,y) {
+		var map;
+		var mapOptions = {
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById('map1'), mapOptions);
+		var pos = new google.maps.LatLng(x,y);
+		var marker = new google.maps.Marker({
+			position: pos,
+			map: map
+		});
+		map.setCenter(pos);  
+	}
+	function map2(x,y) {
+		var map2;
+		var mapOptions2 = {
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map2 = new google.maps.Map(document.getElementById('map2'), mapOptions2);
+		var pos2 = new google.maps.LatLng(x,y);
+		var marker2 = new google.maps.Marker({
+			position: pos2,
+			map: map2
+		});
+		map2.setCenter(pos2);  
+	}
+	function map3(x,y) {
+		var map3;
+		var mapOptions3 = {
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map3 = new google.maps.Map(document.getElementById('map3'), mapOptions3);
+		var pos3 = new google.maps.LatLng(x,y);
+		var marker3 = new google.maps.Marker({
+			position: pos3,
+			map: map3
+		});
+		map3.setCenter(pos3);  
+	}
+    </script>
+    <script>
+		var map;
+		function initialize() {
+		var mapOptions = {
+			zoom: 15,
+			mapTypeId: google.maps.MapTypeId.ROADMAP
+		};
+		map = new google.maps.Map(document.getElementById('map-cl'),
+			mapOptions);
+
+		// Try HTML5 geolocation
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(function(position) {
+			var pos = new google.maps.LatLng(position.coords.latitude,
+                                       position.coords.longitude);
+			var marker = new google.maps.Marker({
+				position: pos,
+				map: map,
+				title: 'Kamu Disini!'
+			});
+			map.setCenter(pos);
+			}, function() {
+			handleNoGeolocation(true);
+			});
+		}  
+		}
+	</script>
+
+</body>
+</html>
